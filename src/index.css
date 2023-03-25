@@ -1,13 +1,177 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  /* 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', */
+  background-image: url("/public/assets/books-5937823_1280.jpg");
+  width: 100%;
+  height: 120vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* navbar */
+.navbar {
+  width: 100%;
+  height: 64px;
+  background-color: #2E3840;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-img {
+  width: 64px;
+  height: 60px;
+  margin-left: 14px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 24px;
+}
+
+.links a {
+  margin-right: 24px;
+  font-size: 24px;
+  text-decoration: none;
+  color: #F9DBBB;
+}
+
+/* home */
+.home-container {
+  position: relative;
+}
+
+.home-img {
+  background-image: url(/public/assets/book-794978_1920.jpg);
+  width: 100%;
+  height: 120vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.home-title {
+  position: absolute;
+  top: 0px;
+  left: 34px;
+  color: #2E3840;
+  font-size: 44px;
+  text-shadow: 3px -1px 1px #4E6E81;
+}
+
+/* login */
+.login {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.register {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.form {
+  position: absolute;
+  left: 180px;
+  background: #4E6E81;
+  max-width: 350px;
+  margin: auto;
+  padding: 24px 45px;
+  text-align: center;
+  border-radius: 30px;
+  margin-top: 100px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form h2 {
+  color: #F9DBBB;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 90%;
+  height: 50px;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-align: center;
+}
+
+.form textarea {
+  border: 1px solid rgb(206, 206, 206);
+  width: 90%;
+  max-width: 99%;
+  min-width: 90%;
+  min-height: 50px;
+  margin-bottom: 10px;
+  background-color: rgb(242, 242, 242);
+}
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  outline: 0;
+  background: #2E3840;
+  width: 50%;
+  border: 0;
+  padding: 15px;
+  color: #F9DBBB;
+  font-size: 14px;
+  border-radius: 10px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:hover,
+.form button:active,
+.form button:focus {
+  background: #F9DBBB;
+  color: #2E3840;
+}
+
+.message {
+  color: #2E3840;
+}
+
+.message a {
+  color: #EA5455;
+  margin-left: 10px;
+
+}
+footer {
+  width: 100%;
+  height: 64px;
+  background-color: #F9DBBB;
+  /* border: 4px solid #EA5455; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.github {
+  color: #EA5455;
+  font-size: 20px;
 }
