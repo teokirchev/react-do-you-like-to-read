@@ -8,6 +8,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  /* background-color: #F9DBBB; */
 }
 
 code {
@@ -28,7 +29,7 @@ code {
 .nav-img {
   width: 64px;
   height: 60px;
-  margin-left: 14px;
+  margin-left: 24px;
 }
 
 .links {
@@ -38,11 +39,20 @@ code {
   margin-right: 24px;
 }
 
-.links a {
+.links a,
+a:visited,
+a:active {
   margin-right: 24px;
   font-size: 24px;
   text-decoration: none;
   color: #F9DBBB;
+  transition: 0.5s color ease;
+}
+
+a:hover {
+  color: #EA5455;
+  transition: 0.5s color ease;
+
 }
 
 /* home */
@@ -68,7 +78,7 @@ code {
   text-shadow: 3px -1px 1px #4E6E81;
 }
 
-/* login */
+/* forms */
 .login {
   width: 100%;
   height: 100vh;
@@ -76,6 +86,7 @@ code {
   background-position: center;
   position: relative;
 }
+
 .register {
   width: 100%;
   height: 100vh;
@@ -83,7 +94,13 @@ code {
   background-position: center;
   position: relative;
 }
-
+/* .create-form {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+} */
 .form {
   position: absolute;
   left: 180px;
@@ -93,8 +110,9 @@ code {
   padding: 24px 45px;
   text-align: center;
   border-radius: 30px;
-  margin-top: 100px;
+  margin-top: 30px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  /* opacity: 0.9; */
 }
 
 .form h2 {
@@ -162,16 +180,59 @@ code {
   margin-left: 10px;
 
 }
+
+/* footer */
 footer {
   width: 100%;
-  height: 64px;
+  height: 44px;
   background-color: #F9DBBB;
   /* border: 4px solid #EA5455; */
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
-.github {
-  color: #EA5455;
+
+a.github {
+  color: #4E6E81;
+
   font-size: 20px;
+  text-decoration: none;
+}
+.github:hover {
+  text-decoration: underline;
+  color: #EA5455;
+
+}
+/* catalog */
+.catalog {
+  background-color: #4E6E81;
+  width: 100%;
+  height: 110vh;
+}
+
+.catalog h1 {
+  color: #F9DBBB;
+  font-size: 44px;
+  text-align: center;
+  margin-top: 0;
+}
+
+.no-articles {
+  color: #EA5455;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* book-item */
+.book-item {
+  transition: .35s;
+  cursor: pointer;
+}
+
+.book-container:hover> :not(:hover) {
+  opacity: .4;
+  transform: scale(0.9);
 }
