@@ -1,25 +1,21 @@
+import { Link } from "react-router-dom";
 
 export const Book = ({
     book
 }) => {
-    <div className="book-container">
-        <div className="book-item">
-            <div className="image-wrap">
-                <img src={book.imageUrl} />
-            </div>
-            <h3>{book.title}</h3>
-            <div className="rating">
-                <span>☆</span>
-                <span>☆</span>
-                <span>☆</span>
-                <span>☆</span>
-                <span>☆</span>
-            </div>
-            <div className="data-buttons">
-                <a href="#" className="btn details-btn">
+    <div className="allBooks">
+        <div className="allBooks-info">
+            <div className="allBooks-info">
+                <div className="img-wrapper">
+                    <img src={book.imageUrl} className="book-img" />
+                </div>
+                <h2 className="book-title">{book.title}</h2>
+                <p className="book-category">{book.genre}</p>
+                <Link to={`/catalog/${book._id}`} className="details-button">
                     Details
-                </a>
+                </Link>
             </div>
         </div>
     </div>
 }
+

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const Header = () => {
     return (
@@ -12,12 +12,12 @@ export const Header = () => {
 
                 <div className="links">
                     {/* guest user */}
-                    <Link to="/catalog">Library</Link>
-                    <Link to="/login">Login</Link>
-                    <Link to="/register">Register</Link>
+                    <NavLink to="/catalog">Library</NavLink>
+                    <NavLink to="/login">Log In</NavLink>
+                    <NavLink to="/register">Sign Up</NavLink>
                     {/* log in user */}
-                    <Link to="/create">Add Book</Link>
-                    <Link to="/logout">Logout</Link>
+                    <NavLink to="/create">Add Book</NavLink>
+                    <NavLink to="/logout">Logout</NavLink>
 
                 </div>
             </nav>

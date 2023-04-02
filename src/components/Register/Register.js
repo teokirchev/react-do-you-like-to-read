@@ -4,7 +4,7 @@ export const Register = () => {
     return (
         <section className="register">
             <div className="form">
-                <h2>Register</h2>
+                <h2>Sign Up</h2>
                 <form className="login-form">
                     <input type="text" name="email" id="register-email" placeholder="email" />
                     <input type="password" name="password" id="register-password" placeholder="password" />

@@ -37,23 +37,30 @@ code {
   justify-content: space-between;
   align-items: center;
   margin-right: 24px;
+
 }
 
 .links a,
-a:visited,
-a:active {
+a:visited
+ {
   margin-right: 24px;
   font-size: 24px;
   text-decoration: none;
   color: #F9DBBB;
+  /* color: #EA5455; */
   transition: 0.5s color ease;
 }
+.links a.active {
+  color: #EA5455;
+  border-bottom: 1px solid #EA5455;
 
+}
 a:hover {
   color: #EA5455;
   transition: 0.5s color ease;
 
 }
+
 
 /* home */
 .home-container {
@@ -139,12 +146,16 @@ a:hover {
 
 .form textarea {
   border: 1px solid rgb(206, 206, 206);
+  border-radius: 10px;
   width: 90%;
   max-width: 99%;
   min-width: 90%;
   min-height: 50px;
   margin-bottom: 10px;
   background-color: rgb(242, 242, 242);
+  outline: none;
+  font-size: 15px;
+  text-align: center;
 }
 
 .form button {
@@ -227,12 +238,52 @@ a.github {
 }
 
 /* book-item */
-.book-item {
-  transition: .35s;
-  cursor: pointer;
+.allBooks {
+  display: flex;
+  align-items: center;
+
 }
 
-.book-container:hover> :not(:hover) {
-  opacity: .4;
+.allBooks:hover > :not(:hover) {
+  opacity: .8;
   transform: scale(0.9);
+}
+.allBooks-info {
+  background-color: #2E3840;
+  color: #EA5455;
+  width: 250px;
+  height: 380px;
+  text-align: center;
+  transition: .35s;
+  cursor: pointer;
+  box-shadow: 0px 5px 15px;
+
+}
+.img-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.book-img {
+  width: 250px;
+  height: 200px;
+}
+.book-title {
+  font-size: 32px;
+  background-color: #2E3840;
+  margin-top: 6px;
+}
+.book-genre{
+  font-size: 18px;
+  margin-bottom: 34px;
+}
+.details-button {
+  color: #F9DBBB;
+  background-color: #EA5455;
+  padding: 4px 12px;
+  font-size: 24px;
+  text-decoration: none;
+}
+.details-button:hover {
+  color: #EA5455;
+  background-color: #F9DBBB;
 }
