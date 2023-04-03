@@ -1,30 +1,29 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import * as authService from "../../services/authService";
 
 export const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const { userLogin } = useContext(AuthContext)
 
-    const onSubmit = async (e) => {
+    const navigate = useNavigate()
+    const onSubmit = (e) => {
         e.preventDefault();
-        try {
-            const response = await fetch('http://localhost:3030/users/login', {
-                method: 'POST',
-                headers: {
-                    'ContentType': 'application/json',
-                },
-                body: JSON.stringify({
-                    email,
-                    password
-                }),
-            });
-            const data = await response.json();
-            return data;
-        }
-        catch (error) {
 
-        }
+        const {
+            email,
+            password,
+        } = Object.fromEntries(new FormData(e.target));
 
+        authService.login(email, password)
+            .then(authData => {
+                userLogin(authData);
+                navigate('/catalog')
+            })
+
+            .catch(() => {
+                navigate('/404')
+            })
     }
 
     return (
@@ -33,11 +32,10 @@ export const Login = () => {
                 <h2>Log In</h2>
                 <form className="login-form" onSubmit={onSubmit}>
                     <input
-                        type="text"
+                        type="email"
                         name="email"
                         id="email"
                         placeholder="email"
-                        value={email}
                     />
                     <input
                         type="password"

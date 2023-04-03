@@ -31,7 +31,11 @@ code {
   height: 60px;
   margin-left: 24px;
 }
+.user-wellcome {
+  color: #F9DBBB;
+  font-size: 18px;
 
+}
 .links {
   display: flex;
   justify-content: space-between;
