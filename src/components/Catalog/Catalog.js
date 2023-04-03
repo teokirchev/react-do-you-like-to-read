@@ -10,7 +10,14 @@ export const Catalog = ({ books }) => {
 
                 {books.length > 0
                     ? books.map(x => <Book key={x._id} book={x} />)
-                    : <p className="no-articles">There are no books in the library</p>
+                    : 
+                    <div>
+                        <p className="no-articles">There are no books in the library</p>
+                        <div>
+                            <img></img>
+                        </div>
+                    </div>
+
                 }
             </div>
         </section>
