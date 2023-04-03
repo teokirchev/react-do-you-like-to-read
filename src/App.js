@@ -26,6 +26,10 @@ function App() {
         setAuth(authData);
     }
 
+    const userLogout = () => {
+        setAuth({});
+    }
+
     // Ако работим със сървъра, не се пише, сега се запазват в стейта 
     const addComment = (bookId, comment) => {
         setBooks(state => {
@@ -63,7 +67,7 @@ function App() {
 
 
     return (
-        <AuthContext.Provider value={{user: auth, userLogin}}>
+        <AuthContext.Provider value={{user: auth, userLogin, userLogout}}>
         <div className="App">
                 <Header />
                 <Routes>
