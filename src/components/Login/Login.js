@@ -1,36 +1,14 @@
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
-import * as authService from "../../services/authService";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
-    const { userLogin } = useContext(AuthContext)
 
-    const navigate = useNavigate()
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        const {
-            email,
-            password,
-        } = Object.fromEntries(new FormData(e.target));
-
-        authService.login(email, password)
-            .then(authData => {
-                userLogin(authData);
-                navigate('/catalog')
-            })
-
-            .catch(() => {
-                navigate('/404')
-            })
-    }
+    
 
     return (
         <section className="login">
             <div className="form">
                 <h2>Log In</h2>
-                <form className="login-form" onSubmit={onSubmit}>
+                <form className="login-form">
                     <input
                         type="email"
                         name="email"
@@ -45,7 +23,7 @@ export const Login = () => {
                     <button type="submit">login</button>
                     <p className="message">
                         Not registered?
-                        <Link to="/register" className="register-link">Register</Link>
+                        <Link to="/register" className="register-link">Sign Up</Link>
                     </p>
                 </form>
             </div>

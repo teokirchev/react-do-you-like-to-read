@@ -1,24 +1,21 @@
-import { Book } from "./Book/Book";
+import { CatalogItem } from "./CatalogItem/CatalogItem";
 
 export const Catalog = ({ books }) => {
-
-
     return (
         <section className="catalog-wrapper">
             <div className="catalog">
-                <h1>Favourite Books Library</h1>
 
-                {books.length > 0
-                    ? books.map(x => <Book key={x._id} book={x} />)
-                    : 
-                    <div>
+                {books.map(x =>
+                    <CatalogItem key={x._id} book={x} />
+                )}
+                {books.length === 0 && (
+                    <>
                         <p className="no-articles">There are no books in the library</p>
-                        <div>
-                            <img></img>
+                        <div className="no-article-img-wrapper">
+                            <img src="./assets/empty-shelf.jpg" className="no-articles-img"></img>
                         </div>
-                    </div>
-
-                }
+                    </>
+                )}
             </div>
         </section>
     );

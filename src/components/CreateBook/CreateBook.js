@@ -1,12 +1,26 @@
+import { useState } from "react";
 
+export const CreateBook = ({ 
+    onCreateBookSubmit,
+ }) => {
 
-export const CreateBook = ({ addBookHandler }) => {
+   const [values, setValues] = useState({
+        title: '', 
+        author: '',
+        imageUrl: '',
+        category: '',
+        summary: '',
+        year: ''
+   })
+   
+   const onChangeHandler = (e) => {
+    setValues(state => ({...state, [e.target.name]: e.target.value}))
+   }
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        const bookData = Object.fromEntries(new FormData(e.target))
-        addBookHandler(bookData);
-    }
+   const onSubmit = (e) => {
+    e.preventDefault();
+    onCreateBookSubmit(values)
+   }
     return (
         <section className="create">
             <div className="form">
@@ -17,32 +31,54 @@ export const CreateBook = ({ addBookHandler }) => {
                         name="title"
                         id="title"
                         placeholder="Title"
+                        value={values.title}
+                        onChange={onChangeHandler}
                     />
                     <input
                         type="text"
                         name="author"
                         id="author"
                         placeholder="Author"
+                        value={values.author}
+                        onChange={onChangeHandler}
+
+                    />
+                    <input
+                        type="text"
+                        name="year"
+                        id="year"
+                        placeholder="Year"
+                        value={values.year}
+                        onChange={onChangeHandler}
                     />
                     <input
                         type="text"
                         name="imageUrl"
                         id="imageUrl"
                         placeholder="Upload Photo"
+                        value={values.imageUrl}
+                        onChange={onChangeHandler}
+
                     />
                     <input
                         type="text"
                         name="category"
                         id="category"
                         placeholder="Category"
+                        value={values.category}
+                        onChange={onChangeHandler}
+
                     />
-                    <textarea
+                    <input
+                        type="text"
                         name="summary"
+                        className="summary"
                         id="summary"
                         placeholder="Resume"
-                        rows="4"
-                        defaultValue={""}>
-                    </textarea>
+                        value={values.summary}
+                        onChange={onChangeHandler}
+
+                    />
 
                     <button type="submit">Add Book</button>
                 </form>

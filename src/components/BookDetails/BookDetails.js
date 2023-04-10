@@ -1,115 +1,105 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 
-export const BookDetails = ({
-    books,
-    addComment,
-}) => {
+import * as bookService from "../../services/bookService";
 
-    const { bookId } = useParams();
-    const [comment, setComment] = useState({
-        username: '',
-        comment: '',
-    });
+export const BookDetails = () => {
+    const [username, setUsername] = useState('');
+    const [comment, setComment] = useState('');
 
-    const [error, setError] = useState({
-        username: '',
-        comment: '',
-    })
-    const book = books.find(x => x._id == bookId);
+    const { bookId } = useParams()
+    const [book, setBook] = useState({})
 
-    const addCommentHandler = (e) => {
+    useEffect(() => {
+        bookService.getOne(bookId)
+            .then(result => {
+                setBook(result);
+            })
+    }, [bookId]);
+
+    const onCommentSubmit = async (e) => {
         e.preventDefault();
-        const result = `${comment.username}: ${comment.comment}`;
-        addComment(bookId, result);
-    }
-    const onChange = (e) => {
-        setComment(state => ({
-            ...state,
-            [e.target.name]: e.target.value
-        }))
+        const result = await bookService.addComment(bookId, {
+            username,
+            comment
+        });
+        setBook(state => ({ ...state, comments: { ...state.comments, [result._id]: result } }));
+        setUsername('');
+        setComment('');
     }
 
-    const validateUsername = (e) => {
-        const username = e.target.value;
-        let errorMessage = '';
+    const onUsernameChange = (e) => {
+        e.preventDefault();
+        setUsername(e.target.value)
+    }
 
-        if(username < 4) {
-            errorMessage = 'Username must be longer than 4 characters';
-        } else if(username.length > 10) {
-            errorMessage = 'Username must be shorter than 10 characters';
-        }
-        setError(state => ({
-            ...state,
-            username: errorMessage,
-        }))
+    const onCommentChange = (e) => {
+        e.preventDefault();
+        setComment(e.target.value)
     }
 
     return (
-        <section id="game-details">
-            <h1>Book Details</h1>
-            <div className="info-section">
-                <div className="game-header">
-                    <img className="game-img" src={book.imageUrl} />
-                    <h1>{book.title}</h1>
-                    <p className="type">{book.category}</p>
+        <div className="details-book-details">
+            <div className="details-container">
+                <div className="details-book-info">
+                    <div className="details-book-img-wrapper">
+                        <img
+                            src={book.imageUrl}
+                            alt={book.title} className="details-book-img" />
+                    </div>
+                    <div>
+                        <h2>{book.title}</h2>
+                        <p><span>Year:</span> {book.year}</p>
+                        <p><span>Author:</span> {book.author}</p>
+                        <p><span>Category:</span> {book.category}</p>
+                        <p className="details-summary"><span className="details-summary">Summary:</span> {book.summary}</p>
+                    </div>
                 </div>
-                <p className="text">
-                    {book.summary}
-                </p>
-                {/* Bonus ( for Guests and Users ) */}
+
+                <button className="details-button edit">Edit</button>
+                <button className="details-button delete">Delete</button>
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
-                        {book.comments?.map(x =>
-                            <li className="comment">
-                                <p>{x}</p>
+                        {book.comments && Object.values(book.comments).map(x => (
+                            <li key={x._id} className="comment">
+                                <p>{x.username}: {x.comment}</p>
                             </li>
-                        )}
+                        ))}
                     </ul>
-                    {!book.comments &&
-                        <p className="no-comment">No comments.</p>
-                    }
-                </div>
-                {/* Edit/Delete buttons ( Only for creator of this game )  */}
-                <div className="buttons">
-                    <a href="#" className="button">
-                        Edit
-                    </a>
-                    <a href="#" className="button">
-                        Delete
-                    </a>
+                    {/* {!book.comments?.length && (
+                    <p className="no-comment">No comments.</p>
+                )} */}
                 </div>
             </div>
-				// {/* Bonus */}
-            {/* // Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
+
+
+
             <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form" onSubmit={addCommentHandler}>
+                <form className="form-comment" onSubmit={onCommentSubmit}>
                     <input
+                        className="username-comment"
                         type="text"
                         name="username"
-                        placeholder="John Doe"
-                        onChange={onChange}
-                        onBlur={validateUsername}
-                        value={comment.username}
+                        placeholder="Name"
+                        value={username}
+                        onChange={onUsernameChange}
                     />
-                    {error.username &&
-                        <div style={{ color: 'red' }}>{error.username}</div>
-                    }
                     <textarea
                         name="comment"
-                        placeholder="Comment......"
-                        onChange={onChange}
-                        value={comment.comment}
-                    />
+                        placeholder="Write a comment..."
+                        value={comment}
+                        onChange={onCommentChange}>
+                    </textarea>
                     <input
-                        className="btn submit"
+                        className="comment-button"
                         type="submit"
-                        defaultValue="Add Comment"
+                        value="Add Comment"
                     />
                 </form>
             </article>
-        </section>
+        </div>
+
+
     );
 }
